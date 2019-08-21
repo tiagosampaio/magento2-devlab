@@ -1,2 +1,2 @@
-# magento-devstack
-Magento DevStack
+# Magento 2 DevStack
+Magento 2 DevStack
