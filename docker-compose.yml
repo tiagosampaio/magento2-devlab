@@ -1,0 +1,62 @@
+version: "3.7"
+networks:
+  backend:
+    driver: bridge
+
+services:
+
+  php72:
+    build:
+      context: .
+      dockerfile: builders/php/7.2-fpm.dkf
+    container_name: php
+    ports:
+      - "9001:9001"
+    restart: on-failure
+    volumes:
+      - ./sites/magento2:/var/www/magento2:cached
+      - ./conf/php/fpm:/var/local/etc
+    networks:
+      - backend
+    links:
+      - redis
+
+  nginx:
+    build:
+      context: .
+      dockerfile: builders/nginx/nginx.dkf
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: on-failure
+    volumes:
+      - ./sites/magento2:/var/www/magento2:cached
+      - ./conf/nginx/sites-available:/etc/nginx/sites-available
+    networks:
+      - backend
+    links:
+      - php72
+
+  database:
+    image: percona:latest
+    container_name: database
+    restart: always
+    volumes:
+      - ./storage/database/mysql:/var/lib/mysql:delegated
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: percona
+      MYSQL_PASSWORD: percona
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - backend

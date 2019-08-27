@@ -1,0 +1,8 @@
+FROM nginx:1.17
+
+MAINTAINER "Tiago Sampaio"
+
+RUN apt-get update && apt-get install -y \
+    vim
+
+ADD conf/nginx/nginx.conf /etc/nginx
