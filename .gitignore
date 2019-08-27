@@ -1,2 +1,3 @@
-magento2/*
+sites/*
+!sites/.gitignore
 storage/*
