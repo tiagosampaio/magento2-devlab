@@ -3,6 +3,13 @@ FROM nginx:1.17
 MAINTAINER "Tiago Sampaio"
 
 RUN apt-get update && apt-get install -y \
-    vim
+    vim && \
+    echo "syntax on" >> ~/.vimrc && \
+    echo "filetype plugin indent on" >> ~/.vimrc && \
+    echo "set number" >> ~/.vimrc && \
+    echo "set laststatus=2" >> ~/.vimrc && \
+    echo "set ruler" >> ~/.vimrc && \
+    echo "set term=xterm-256color" >> ~/.vimrc && \
+    echo "alias ll=\"ls -lah\"" >> ~/.bashrc
 
 ADD conf/nginx/nginx.conf /etc/nginx

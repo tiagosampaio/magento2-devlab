@@ -40,7 +40,14 @@ RUN apt-get update && apt-get install -y \
     && echo "Defaults        lecture = never" >> /etc/sudoers.d/privacy \
     && mkdir /home/magento2/magento2 && mkdir /var/www/magento2 \
     && mkdir /home/magento2/state \
-    && curl -sS https://accounts.magento.cloud/cli/installer -o /home/magento2/installer
+    && curl -sS https://accounts.magento.cloud/cli/installer -o /home/magento2/installer \
+    && echo "syntax on" >> ~/.vimrc \
+    && echo "filetype plugin indent on" >> ~/.vimrc \
+    && echo "set number" >> ~/.vimrc \
+    && echo "set laststatus=2" >> ~/.vimrc \
+    && echo "set ruler" >> ~/.vimrc \
+    && echo "set term=xterm-256color" >> ~/.vimrc \
+    &&  echo "alias ll=\"ls -lah\"" >> ~/.bashrc
 
 # PHP config
 ADD conf/php/php.ini /usr/local/etc/php/conf.d/zzz-docker.ini
