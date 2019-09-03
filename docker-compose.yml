@@ -69,3 +69,14 @@ services:
       - "9300:9300"
     networks:
       - backend
+
+  queue:
+    image: rabbitmq:3-management
+    container_name: queue
+    environment:
+      RABBITMQ_DEFAULT_USER: magento
+      RABBITMQ_DEFAULT_PASS: magento2
+    ports:
+      - "15672:15672"
+    networks:
+      - backend
