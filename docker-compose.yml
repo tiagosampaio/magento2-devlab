@@ -11,7 +11,7 @@ services:
       dockerfile: builders/php/7.2-fpm.dkf
     container_name: php
     ports:
-      - "9001:9001"
+      - "9000:9000"
     restart: on-failure
     volumes:
       - ./sites/magento2:/var/www/magento2:cached
