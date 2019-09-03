@@ -60,3 +60,12 @@ services:
       - "6379:6379"
     networks:
       - backend
+
+  elasticsearch:
+    image: elasticsearch:6.8.2
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - backend
