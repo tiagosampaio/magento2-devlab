@@ -5,7 +5,7 @@ networks:
 
 services:
 
-  php72:
+  php:
     build:
       context: .
       dockerfile: builders/php/7.2-fpm.dkf
@@ -34,7 +34,7 @@ services:
     networks:
       - backend
     links:
-      - php72
+      - php
 
   database:
     image: percona:latest
