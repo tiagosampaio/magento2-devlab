@@ -12,7 +12,7 @@ services:
     container_name: php
     restart: on-failure
     volumes:
-      - ./sites/magento2:/var/www/magento2:cached
+      - ./sites/magento2:/var/www/html/magento2:cached
       - ./conf/php/fpm:/var/local/etc
     networks:
       - backend
@@ -29,7 +29,7 @@ services:
       - "443:443"
     restart: on-failure
     volumes:
-      - ./sites/magento2:/var/www/magento2:cached
+      - ./sites/magento2:/var/www/html/magento2:cached
       - ./conf/nginx/sites-available:/etc/nginx/sites-available
     networks:
       - backend
