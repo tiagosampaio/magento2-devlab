@@ -4,24 +4,22 @@ MAINTAINER "Tiago Sampaio"
 
 ENV PHP_EXTRA_CONFIGURE_ARGS="--enable-fpm --with-fpm-user=magento2 --with-fpm-group=magento2"
 
+# Add Scripts directory
+ADD builders/scripts /var/scripts
+
 RUN apt-get update && apt-get install -y \
-    apt-utils \
-    sudo \
-    wget \
-    unzip \
-    cron \
-    curl \
     libmcrypt-dev \
     libicu-dev \
     libxml2-dev libxslt1-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
-    git \
-    vim \
     default-mysql-client \
     ocaml \
     expect \
+    && sh /var/scripts/install-tools.sh \
+    && sh /var/scripts/install-vim.sh \
+    && sh /var/scripts/install-alias.sh \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure hash --with-mhash \
     && docker-php-ext-install -j$(nproc) intl xsl gd zip pdo_mysql opcache soap bcmath json iconv \
@@ -40,14 +38,7 @@ RUN apt-get update && apt-get install -y \
     && echo "Defaults        lecture = never" >> /etc/sudoers.d/privacy \
     && mkdir /home/magento2/magento2 && mkdir /var/www/magento2 \
     && mkdir /home/magento2/state \
-    && curl -sS https://accounts.magento.cloud/cli/installer -o /home/magento2/installer \
-    && echo "syntax on" >> ~/.vimrc \
-    && echo "filetype plugin indent on" >> ~/.vimrc \
-    && echo "set number" >> ~/.vimrc \
-    && echo "set laststatus=2" >> ~/.vimrc \
-    && echo "set ruler" >> ~/.vimrc \
-    && echo "set term=xterm-256color" >> ~/.vimrc \
-    &&  echo "alias ll=\"ls -lah\"" >> ~/.bashrc
+    && curl -sS https://accounts.magento.cloud/cli/installer -o /home/magento2/installer
 
 # PHP config
 ADD conf/php/php.ini /usr/local/etc/php/conf.d/zzz-docker.ini
@@ -77,7 +68,7 @@ ADD conf/php/php.ini /usr/local/etc/php/conf.d/zzz-docker.ini
 #RUN passwd magento2 -d
 
 #EXPOSE 80 22 5000 44100 9000
-#WORKDIR /home/magento2
+WORKDIR /var/www/html/magento2
 
 #USER root
 
