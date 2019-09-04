@@ -80,3 +80,14 @@ services:
       - "15672:15672"
     networks:
       - backend
+
+  varnish:
+    image: varnish:latest
+    container_name: varnish
+    restart: on-failure
+    volumes:
+      - ./conf/varnish:/etc/varnish
+    ports:
+      - "8080:80"
+    networks:
+      - backend
