@@ -13,7 +13,7 @@
 vcl 4.0;
 
 # Default backend definition. Set this to point to your content server.
-backend default {
+backend magento2 {
     .host = "nginx";
     .port = "80";
     .first_byte_timeout = 600s;
@@ -45,6 +45,17 @@ acl purge {
 
 
 sub vcl_recv {
+    # set req.http.host = "dev.magento2.com";
+    set req.backend_hint = magento2;
+
+    # Command to clear complete cache for all URLs and all sub-domains
+    # curl -X XCGFULLBAN http://example.com
+
+    if (req.method == "XCGFULLBAN") {
+        ban("req.http.host ~ .*");
+        return (synth(200, "Full cache cleared"));
+    }
+
     if (req.method == "PURGE") {
         if (client.ip !~ purge) {
             return (synth(405, "Method not allowed"));
@@ -243,6 +254,14 @@ sub vcl_backend_response {
 
 
 sub vcl_deliver {
+    # if (req.http.host == "localhost") {
+        if (obj.hits > 0) {
+            set resp.http.X-Cache = "HIT";
+        } else {
+            set resp.http.X-Cache = "MISS";
+        }
+    # }
+
     if (resp.http.X-Magento-Debug) {
         if (resp.http.x-varnish ~ " ") {
             set resp.http.X-Magento-Cache-Debug = "HIT";
