@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CONTAINER=$@
+
+[ -z "$1" ] && CONTAINER="php"
+docker-compose exec "${CONTAINER}" bash
