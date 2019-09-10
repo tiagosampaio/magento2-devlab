@@ -1,0 +1,11 @@
+#!/bin/bash
+# [ -z "$1" ] && echo "Please specify the version to download (ex. 2.0.0)" && exit
+
+DIR=/var/www/html/magento2
+DB_DIR=$DIR/magento2.sql.tar.xz
+
+bin/cli curl -L https://github.com/tiagosampaio/magento2-sampledata/raw/Open-Source-2.3.2/db/magento2.sql.tar.xz -o $DB_DIR
+bin/cli tar -xf $DB_DIR -C $DIR
+bin/cli rm -rf $DB_DIR
+
+bin/cli mysql -h database -u root -p magento2 < $DIR/magento2.sql
