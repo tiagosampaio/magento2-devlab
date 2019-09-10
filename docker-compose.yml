@@ -5,11 +5,12 @@ networks:
 
 volumes:
   magento2:
+  database:
 
 services:
 
   magento:
-    image: tiagosampaio/magento:2.3.2-ce
+    image: tiagosampaio/magento-opensource:2.3.2
     container_name: magento
     volumes:
       - magento2:/magento2
@@ -24,6 +25,12 @@ services:
     restart: on-failure
     volumes:
       - magento2:/var/www/html/magento2
+      - ./sites/magento2/app/code:/var/www/html/magento2/app/code
+      - ./sites/magento2/app/design:/var/www/html/magento2/app/design
+#      - ./sites/magento2/generated:/var/www/html/magento2/generated
+      - ./sites/magento2/var/log:/var/www/html/magento2/var/log
+      - ./sites/magento2/var/report:/var/www/html/magento2/var/report
+      - ./builders/scripts/:/var/scripts/
 #      - ./sites/magento2:/var/www/html/magento2:cached
 #      - ./conf/php/fpm:/var/local/etc
     networks:
@@ -48,6 +55,7 @@ services:
       - backend
     links:
       - php
+    working_dir: /var/www/html/magento2
     # command: /bin/bash -c "envsubst < /var/tmp/magento2.conf > /etc/nginx/conf.d/magento2.conf && exec nginx -g 'daemon off;'"
 
   database:
@@ -59,6 +67,8 @@ services:
       MYSQL_USER: magento
       MYSQL_PASSWORD: magento_pass
       MYSQL_DATABASE: magento2
+    volumes:
+      - database:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
