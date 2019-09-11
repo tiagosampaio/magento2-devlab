@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CONTAINER=$@
+
+docker-compose -f docker-compose.yml restart ${CONTAINER}
