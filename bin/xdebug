@@ -5,14 +5,14 @@ restart()
   bin/restart ${CONTAINER}
 }
 
-enable()
+disable()
 {
   bin/cli sed -i -e 's/^zend_extension/\;zend_extension/g' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
   restart
   echo "Xdebug has been disabled."
 }
 
-disable()
+enable()
 {
   bin/cli sed -i -e 's/^\;zend_extension/zend_extension/g' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
   restart
@@ -20,9 +20,9 @@ disable()
 }
 
 if [ "$1" == "disable" ] || [ "$1" == "d" ]; then
-  enable
-elif [ "$1" == "enable" ] || [ "$1" == "e" ]; then
   disable
+elif [ "$1" == "enable" ] || [ "$1" == "e" ]; then
+  enable
 else
   echo "Please specify either 'enable' or 'disable' as an argument"
 fi
