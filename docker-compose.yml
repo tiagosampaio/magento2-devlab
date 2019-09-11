@@ -20,7 +20,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: builders/php/7.2-fpm.dkf
+      dockerfile: builders/php/Dockerfile
     container_name: php
     restart: on-failure
     volumes:

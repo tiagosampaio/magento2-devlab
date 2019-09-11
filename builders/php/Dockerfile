@@ -31,14 +31,14 @@ RUN apt-get update && apt-get install -y \
     && echo "xdebug.remote_host=127.0.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.max_nesting_level=1000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && chmod 666 /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && useradd -m -d /home/magento2 -s /bin/bash magento2 && adduser magento2 sudo \
-    && echo "magento2 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
-    && touch /etc/sudoers.d/privacy \
-    && echo "Defaults        lecture = never" >> /etc/sudoers.d/privacy \
-    && mkdir /home/magento2/magento2 && mkdir /var/www/magento2 \
-    && mkdir /home/magento2/state \
-    && curl -sS https://accounts.magento.cloud/cli/installer -o /home/magento2/installer
+    && chmod 666 /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+#    && useradd -m -d /home/magento2 -s /bin/bash magento2 && adduser magento2 sudo \
+#    && echo "magento2 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
+#    && touch /etc/sudoers.d/privacy \
+#    && echo "Defaults        lecture = never" >> /etc/sudoers.d/privacy \
+#    && mkdir /home/magento2/magento2 && mkdir /var/www/magento2 \
+#    && mkdir /home/magento2/state \
+#    && curl -sS https://accounts.magento.cloud/cli/installer -o /home/magento2/installer
 
 # PHP config
 ADD conf/php/php.ini /usr/local/etc/php/conf.d/zzz-docker.ini
