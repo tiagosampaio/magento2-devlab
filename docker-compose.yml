@@ -4,19 +4,11 @@ networks:
   backend:
     driver: bridge
 
-volumes:
-  magento2:
-  database:
-
 services:
 
   magento:
     image: tiagosampaio/magento-opensource:2.3.2
     container_name: magento
-    volumes:
-      - magento2:/magento2
-    env_file:
-      - env/magento.env
     networks:
       - backend
 
@@ -24,18 +16,6 @@ services:
     image: tiagosampaio/magento2-php:7.2-fpm
     container_name: php
     restart: on-failure
-    volumes:
-      - magento2:/var/www/html/magento2
-      - ./sites/magento2/app/code:/var/www/html/magento2/app/code
-      - ./sites/magento2/app/design:/var/www/html/magento2/app/design
-#      - ./sites/magento2/generated:/var/www/html/magento2/generated
-      - ./sites/magento2/var/log:/var/www/html/magento2/var/log
-      - ./sites/magento2/var/report:/var/www/html/magento2/var/report
-      - ./builders/scripts/:/var/scripts/
-#      - ./sites/magento2:/var/www/html/magento2:cached
-#      - ./conf/php/fpm:/var/local/etc
-    env_file:
-      - env/magento.env
     networks:
       - backend
 #    links:
@@ -48,12 +28,6 @@ services:
       - "80:80"
       - "443:443"
     restart: on-failure
-    volumes:
-      - magento2:/var/www/html/magento2
-      - ./conf/nginx/conf.d/:/etc/nginx/conf.d/
-      - ./conf/nginx/template/magento2.conf:/var/tmp/magento2.conf
-    env_file:
-      - env/magento.env
     networks:
       - backend
     links:
@@ -65,10 +39,6 @@ services:
     image: percona:latest
     container_name: database
     restart: on-failure
-    env_file:
-      - env/db.env
-    volumes:
-      - database:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
