@@ -1,5 +1,6 @@
 #!/bin/bash
 bin/start
+bin/xdebug disable
 bin/docker-compose exec php sh /var/scripts/magento-fresh-install.sh "$@"
 bin/magento setup:static-content:deploy -f
 bin/cli chown -R www-data: /var/www/html/magento2
