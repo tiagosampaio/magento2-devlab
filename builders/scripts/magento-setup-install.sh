@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 php /var/www/html/magento2/bin/magento setup:install \
-	--base-url=${MAGENTO_BASE_URL} \
+	--base-url=http://${MAGENTO_DOMAIN} \
 	--db-host=database \
 	--db-name=magento2 \
 	--db-user=root \

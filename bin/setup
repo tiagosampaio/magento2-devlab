@@ -1,6 +1,18 @@
 #!/bin/bash
+
+echo "Starting containers..."
 bin/start
+
+echo "Disabling PHP Xdebug..."
 bin/xdebug disable
+
+echo "Installing Magento..."
 bin/docker-compose exec php sh /var/scripts/magento-fresh-install.sh "$@"
-bin/magento setup:static-content:deploy -f
+
+# echo "Deploying static content..."
+# bin/magento setup:static-content:deploy -f
+
+echo "Changing permissions..."
 bin/cli chown -R www-data: /var/www/html/magento2
+
+echo "Done!"
