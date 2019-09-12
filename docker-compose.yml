@@ -21,9 +21,7 @@ services:
       - backend
 
   php:
-    build:
-      context: .
-      dockerfile: builders/php/Dockerfile
+    image: tiagosampaio/magento2-php:7.2-fpm
     container_name: php
     restart: on-failure
     volumes:
