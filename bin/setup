@@ -14,5 +14,6 @@ bin/docker-compose exec php sh /var/scripts/magento-fresh-install.sh "$@"
 
 echo "Changing permissions..."
 bin/cli chown -R www-data: /var/www/html/magento2
+bin/cli chmod -R g+s /var/www/html/magento2
 
 echo "Done!"
