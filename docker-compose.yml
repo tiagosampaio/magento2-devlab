@@ -33,6 +33,20 @@ services:
       - ./builders/scripts/:/var/scripts/
 #      - ./sites/magento2:/var/www/html/magento2:cached
 #      - ./conf/php/fpm:/var/local/etc
+    environment:
+      - MAGENTO_VERSION=2.3.2
+      - MAGENTO_EDITION="Open Source"
+      - MAGENTO_BASE_URL=http://dev.magento2.com
+      - MAGENTO_ADMIN_FRONTNAME=admin
+      - MAGENTO_ADMIN_FIRSTNAME=Magento
+      - MAGENTO_ADMIN_LASTNAME=User
+      - MAGENTO_ADMIN_EMAIL=magento@magento.com
+      - MAGENTO_ADMIN_USER=magento
+      - MAGENTO_ADMIN_PASSWORD=admin123
+      - MAGENTO_LANGUAGE=en_US
+      - MAGENTO_CURRENCY=USD
+      - MAGENTO_TIMEZONE=America/Sao_Paulo
+      - MAGENTO_USE_REWRITES=1
     networks:
       - backend
     links:
