@@ -1,3 +1,5 @@
+# Tiago Sampaio's Docker Configuration for Magento 2 (https://github.com/tiagosampaio/magento2-devstack)
+
 version: "3.7"
 
 volumes:
@@ -39,3 +41,9 @@ services:
       - env/db.env
     volumes:
       - database:/var/lib/mysql
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025"
+      - "8025:8025"

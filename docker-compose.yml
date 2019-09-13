@@ -1,3 +1,5 @@
+# Tiago Sampaio's Docker Configuration for Magento 2 (https://github.com/tiagosampaio/magento2-devstack)
+
 version: "3.7"
 
 networks:
@@ -21,8 +23,8 @@ services:
       - magento
     networks:
       - backend
-#    links:
-#      - redis
+    links:
+      - redis
 
   nginx:
     image: nginx:1.17
