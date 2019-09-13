@@ -20,7 +20,6 @@ services:
 #      - ./sites/magento2/generated:/var/www/html/magento2/generated
       - ./sites/magento2/var/log:/var/www/html/magento2/var/log
       - ./sites/magento2/var/report:/var/www/html/magento2/var/report
-      - ./builders/scripts/:/var/scripts/
 #      - ./sites/magento2:/var/www/html/magento2:cached
 #      - ./conf/php/fpm:/var/local/etc
     env_file:
