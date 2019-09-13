@@ -16,6 +16,9 @@ services:
     image: tiagosampaio/magento2-php:7.2-fpm
     container_name: php
     restart: on-failure
+    depends_on:
+      - database
+      - magento
     networks:
       - backend
 #    links:
@@ -30,6 +33,8 @@ services:
     restart: on-failure
     networks:
       - backend
+    depends_on:
+      - php
     links:
       - php
     working_dir: /var/www/html/magento2

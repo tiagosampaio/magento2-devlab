@@ -24,6 +24,7 @@ services:
 #      - ./conf/php/fpm:/var/local/etc
     env_file:
       - env/magento.env
+      - env/db.env
 
   nginx:
     volumes:

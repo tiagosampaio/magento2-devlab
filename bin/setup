@@ -3,9 +3,6 @@
 echo "Starting containers..."
 bin/start
 
-echo "Disabling PHP Xdebug..."
-bin/xdebug disable
-
 echo "Installing Magento..."
 bin/docker-compose exec php sh /var/scripts/magento-fresh-install.sh "$@"
 
