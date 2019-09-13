@@ -1,0 +1,11 @@
+#!/bin/bash
+#[ -z "$1" ] && echo "Please specify a cache command (ex. clean)" && exit
+
+COMMAND=$1
+[ -z "$1" ] && COMMAND="status"
+
+bin/magento module:${COMMAND} $2
+
+if [ "${COMMAND}" == "enable" ]; then
+  bin/magento setup:upgrade --quiet
+fi
