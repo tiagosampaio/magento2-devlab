@@ -1,0 +1,7 @@
+#!/bin/bash
+#[ -z "$1" ] && echo "Please specify a cache command (ex. clean)" && exit
+
+COMMAND=$1
+[ -z "$1" ] && COMMAND="status"
+
+bin/magento cache:${COMMAND} $2
