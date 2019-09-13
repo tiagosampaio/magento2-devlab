@@ -1,2 +1,2 @@
 #!/bin/bash
-bin/docker-compose redis "$@"
+bin/docker exec -ti redis "$@"

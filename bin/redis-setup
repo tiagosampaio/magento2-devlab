@@ -34,7 +34,7 @@ set_session()
     --session-save-redis-host=${REDIS_HOST} \
     --session-save-redis-port=${REDIS_PORT} \
     --session-save-redis-db=${REDIS_DB}
-    
+
   echo "Cache set for session."
 }
 
