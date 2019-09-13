@@ -1,0 +1,53 @@
+#!/bin/bash
+
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_DB=0
+#REDIS_PASSWORD=""
+
+set_cache()
+{
+  bin/magento setup:config:set \
+    --cache-backend=redis \
+    --cache-backend-redis-server=${REDIS_HOST} \
+    --cache-backend-redis-port=${REDIS_PORT} \
+    --cache-backend-redis-db=${REDIS_DB}
+
+  echo "Cache set for backend."
+}
+
+set_page_cache()
+{
+  bin/magento setup:config:set \
+    --page-cache=redis \
+    --page-cache-redis-server=${REDIS_HOST} \
+    --page-cache-redis-port=${REDIS_PORT} \
+    --page-cache-redis-db=${REDIS_DB}
+
+  echo "Cache set for page cache."
+}
+
+set_session()
+{
+  bin/magento setup:config:set \
+    --session-save=redis \
+    --session-save-redis-host=${REDIS_HOST} \
+    --session-save-redis-port=${REDIS_PORT} \
+    --session-save-redis-db=${REDIS_DB}
+    
+  echo "Cache set for session."
+}
+
+if [ "$1" == "cache" ]; then
+  set_cache
+elif [ "$1" == "page-cache" ]; then
+  set_page_cache
+elif [ "$1" == "session" ]; then
+  set_session
+elif [ "$1" == "all" ]; then
+  set_cache
+  set_page_cache
+  set_session
+else
+  echo "Please specify one of these arguments: 'cache', 'page-cache', 'session' or 'all'"
+fi
