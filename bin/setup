@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MAGE_DIR=/var/www/html/magento2
+
 echo "Starting containers..."
 bin/start
 
@@ -10,7 +12,10 @@ bin/docker-compose exec php sh /var/scripts/magento-fresh-install.sh "$@"
 # bin/magento setup:static-content:deploy -f
 
 echo "Changing permissions..."
-bin/cli chown -R www-data: /var/www/html/magento2
-bin/cli chmod -R g+s /var/www/html/magento2
+bin/cli chown -R www-data: ${MAGE_DIR}
+bin/cli chmod -R g+s ${MAGE_DIR}
+
+echo "Copying Magento files..."
+bin/docker cp php:${MAGE_DIR} ./sites
 
 echo "Done!"

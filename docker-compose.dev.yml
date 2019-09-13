@@ -33,6 +33,7 @@ services:
       - magento2:/var/www/html/magento2
       - ./conf/nginx/conf.d/:/etc/nginx/conf.d/
       - ./conf/nginx/template/magento2.conf:/var/tmp/magento2.conf
+      - ./storage/logs/nginx:/var/log/nginx
     env_file:
       - env/magento.env
 
@@ -42,8 +43,9 @@ services:
     volumes:
       - database:/var/lib/mysql
 
-  mailhog:
+  mail:
     image: mailhog/mailhog
+    container_name: mail
     ports:
-      - "1025"
+      - "1025:1025"
       - "8025:8025"
