@@ -10,7 +10,7 @@ services:
 
   magento:
     volumes:
-      - magento2:/magento2
+      - magento2:/magento
     env_file:
       - env/magento.env
 

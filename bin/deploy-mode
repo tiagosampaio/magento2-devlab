@@ -1,0 +1,10 @@
+#!/bin/bash
+MODE=$1
+
+if [ "${MODE}" ]; then
+    COMMAND="set"
+else
+    COMMAND="show"
+fi
+
+bin/magento deploy:mode:${COMMAND} ${MODE}
