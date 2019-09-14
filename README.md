@@ -1,5 +1,8 @@
 # Magento 2 DevStack
+
 Magento 2 DevStack
+
+[![Build Status](https://travis-ci.org/tiagosampaio/magento2-devstack.svg?branch=master)](https://travis-ci.org/tiagosampaio/magento2-devstack)
 
 ## XDebug Hack for MacOS
 
