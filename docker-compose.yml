@@ -1,6 +1,6 @@
 # Tiago Sampaio's Docker Configuration for Magento 2 (https://github.com/tiagosampaio/magento2-devstack)
 
-version: "3.7"
+version: "3.3"
 
 networks:
   backend:
