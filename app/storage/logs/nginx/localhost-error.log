@@ -1,3 +1,0 @@
-2019/09/14 03:20:09 [error] 7#7: *252 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.22.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
-2019/09/14 18:44:30 [error] 8#8: *2 open() "/usr/share/nginx/html/robots.txt" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /robots.txt HTTP/1.1", host: "localhost"
-2019/09/14 18:44:32 [error] 8#8: *2 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
