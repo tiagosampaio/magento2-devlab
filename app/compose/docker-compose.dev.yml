@@ -12,34 +12,34 @@ services:
     volumes:
       - magento2:/magento
     env_file:
-      - env/magento.env
+      - ../env/magento.env
 
   php:
     volumes:
       - magento2:/var/www/html/magento2
-      - ./sites/magento2/app/code:/var/www/html/magento2/app/code
-      - ./sites/magento2/app/design:/var/www/html/magento2/app/design
+      - ../../sites/magento2/app/code:/var/www/html/magento2/app/code
+      - ../../sites/magento2/app/design:/var/www/html/magento2/app/design
 #      - ./sites/magento2/generated:/var/www/html/magento2/generated
-      - ./sites/magento2/var/log:/var/www/html/magento2/var/log
-      - ./sites/magento2/var/report:/var/www/html/magento2/var/report
+      - ../../sites/magento2/var/log:/var/www/html/magento2/var/log
+      - ../../sites/magento2/var/report:/var/www/html/magento2/var/report
 #      - ./sites/magento2:/var/www/html/magento2:cached
 #      - ./conf/php/fpm:/var/local/etc
     env_file:
-      - env/magento.env
-      - env/db.env
+      - ../env/magento.env
+      - ../env/db.env
 
   nginx:
     volumes:
       - magento2:/var/www/html/magento2
-      - ./conf/nginx/conf.d/:/etc/nginx/conf.d/
-      - ./conf/nginx/template/magento2.conf:/var/tmp/magento2.conf
-      - ./storage/logs/nginx:/var/log/nginx
+      - ../conf/nginx/conf.d/:/etc/nginx/conf.d/
+      - ../conf/nginx/template/magento2.conf:/var/tmp/magento2.conf
+      - ../storage/logs/nginx:/var/log/nginx
     env_file:
-      - env/magento.env
+      - ../env/magento.env
 
   database:
     env_file:
-      - env/db.env
+      - ../env/db.env
     volumes:
       - database:/var/lib/mysql
 

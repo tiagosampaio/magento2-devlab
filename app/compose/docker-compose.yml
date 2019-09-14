@@ -11,6 +11,7 @@ services:
   magento:
     image: tiagosampaio/magento-opensource:2.3.2
     container_name: magento
+    working_dir: /magento
     networks:
       - backend
 
