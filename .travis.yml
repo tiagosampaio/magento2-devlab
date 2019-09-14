@@ -37,3 +37,18 @@ script:
   - bin/cache clean
   - bin/reindex
   - bin/module
+  - bin/xdebug enable
+  - bin/xdebug disable
+  - bin/redis-setup all
+  - bin/nginx-check
+  - bin/nginx-reload
+  - bin/magento
+  - bin/logs
+  - bin/docker
+  - bin/docker-compose
+  - bin/revive
+  - bin/stop
+  - bin/start
+  - bin/up
+  - bin/down
+  - bin/destroy
