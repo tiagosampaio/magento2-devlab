@@ -45,7 +45,6 @@ script:
   - bin/module
   - bin/xdebug enable
   - bin/xdebug disable
-  - bin/redis-setup all
   - bin/nginx-check
   - bin/nginx-reload
   - bin/magento
