@@ -1,4 +1,5 @@
 sites/*
 !sites/.gitignore
-storage/*
+app/storage/*
 .idea/*
+.var/

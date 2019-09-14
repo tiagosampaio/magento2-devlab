@@ -1,18 +1,43 @@
 #!/bin/bash
-[ -z "$1" ] && echo "Please specify the version to download (ex. 2.0.0)" && exit
+
+MAGE_VERSION=$1
+FILENAME=$MAGE_VERSION.tar.gz
+ARCHIVE_URL="https://github.com/tiagosampaio/magento-opensource-releases/archive"
+DOWNLOAD_URL="$ARCHIVE_URL/$FILENAME"
+
+[ -z "$MAGE_VERSION" ] && echo "Please specify the version to download (ex. 2.3.2)" && exit
 #curl -L http://pubfiles.nexcess.net/magento/ce-packages/magento2-$1.tar.gz | tar xzf - -o -C .
 # docker-compose exec php /bin/bash -c 'curl -L http://pubfiles.nexcess.net/magento/ce-packages/magento2-$1.tar.gz | tar xzf - -o -C /var/www/html/magento2'
 
-DIR=/var/www/html/magento2
-APP_DIR=$DIR/magento2.tar.gz
+VAR_DIR=".var"
+MAGE_RELEASES_DIR="$VAR_DIR/magento/releases"
 
-bin/cli rm -rf $DIR/*
-bin/cli rm -rf $DIR/.*
+check_dir()
+{
+    if ! [[ -d "$VAR_DIR" ]]; then
+        mkdir -p "$MAGE_RELEASES_DIR"
+    fi
+}
 
-bin/cli curl -L http://pubfiles.nexcess.net/magento/ce-packages/magento2-$1.tar.gz -o $APP_DIR
-bin/cli tar -xf $APP_DIR -C $DIR
-bin/cli rm -rf $APP_DIR
+download()
+{
+    FINAL_FILE="$MAGE_RELEASES_DIR/$FILENAME"
 
-bin/download-db
+    if ! [[ -f "$FINAL_FILE" ]]; then
+        echo "Checking availability..."
+        RESPONSE=$(curl -L -s -o /dev/null -w "%{HTTP_CODE}" "$DOWNLOAD_URL")
 
-bin/cli chown -R www-data: $DIR
+        if [ "$RESPONSE" == "404" ]; then
+            echo "The version $MAGE_VERSION of Magento Open Source is not available for download."
+            exit 0
+        fi
+
+        echo "Starting the download..."
+        curl -L "$DOWNLOAD_URL" -o "$FINAL_FILE"
+    else
+        echo "The version $MAGE_VERSION of Magento Open Source is already downloaded."
+    fi
+}
+
+check_dir
+download
