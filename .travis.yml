@@ -50,6 +50,7 @@ script:
   - bin/magento
   - bin/logs
   - bin/docker
+  - bin/docker-compose version
   - bin/revive
   - bin/stop
   - bin/start
