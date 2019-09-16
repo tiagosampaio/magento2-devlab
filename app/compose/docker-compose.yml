@@ -8,20 +8,12 @@ networks:
 
 services:
 
-  magento:
-    image: tiagosampaio/magento-opensource:2.3.2
-    container_name: magento
-    working_dir: /magento
-    networks:
-      - backend
-
   php:
     image: tiagosampaio/magento2-php:7.2-fpm
     container_name: php
     restart: on-failure
     depends_on:
       - database
-      - magento
     networks:
       - backend
     links:

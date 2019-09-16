@@ -15,7 +15,7 @@ echo "Changing permissions..."
 bin/cli chown -R www-data: ${MAGE_DIR}
 bin/cli chmod -R g+s ${MAGE_DIR}
 
-echo "Copying Magento files..."
-bin/docker cp php:${MAGE_DIR} ./sites
+#echo "Copying Magento files..."
+#bin/docker cp php:${MAGE_DIR} ./sites
 
 echo "Done!"
