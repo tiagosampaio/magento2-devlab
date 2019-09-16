@@ -2,4 +2,6 @@ sites/*
 !sites/.gitignore
 app/storage/*
 .idea/*
-.var/
+.env
+var/*
+!var/.gitignore
