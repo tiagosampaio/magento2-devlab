@@ -2,6 +2,8 @@
 
 MAGE_DIR=/var/www/html/magento2
 
+bin/deploy-magento -h
+
 echo "Starting containers..."
 bin/start
 
