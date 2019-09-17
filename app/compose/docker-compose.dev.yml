@@ -10,18 +10,20 @@ services:
 
   php:
     volumes:
-#      - magento2:/var/www/html/magento2
-      - ../../sites/magento2:/root/magento2
-#      - ../../sites/magento2/app/code:/var/www/html/magento2/app/code
-#      - ../../sites/magento2/app/design:/var/www/html/magento2/app/design
+      - magento2:/var/www/html/magento2
+#      - ../../sites/magento2:/root/magento2
+      - ../../var/magento/releases/:/var/magento/releases/
+      - ../../sites/magento2/app/code:/var/www/html/magento2/app/code
+      - ../../sites/magento2/app/design:/var/www/html/magento2/app/design
 #      - ./sites/magento2/generated:/var/www/html/magento2/generated
-#      - ../../sites/magento2/var/log:/var/www/html/magento2/var/log
-#      - ../../sites/magento2/var/report:/var/www/html/magento2/var/report
+      - ../../sites/magento2/var/log:/var/www/html/magento2/var/log
+      - ../../sites/magento2/var/report:/var/www/html/magento2/var/report
 #      - ./sites/magento2:/var/www/html/magento2:cached
 #      - ./conf/php/fpm:/var/local/etc
     env_file:
       - ../env/magento.env
       - ../env/db.env
+      - ../../.env
 
   nginx:
     volumes:
@@ -31,10 +33,12 @@ services:
       - ../../var/storage/logs/nginx:/var/log/nginx
     env_file:
       - ../env/magento.env
+      - ../../.env
 
   database:
     env_file:
       - ../env/db.env
+      - ../../.env
     volumes:
       - database:/var/lib/mysql
 

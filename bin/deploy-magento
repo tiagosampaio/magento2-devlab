@@ -1,0 +1,49 @@
+#!/bin/bash
+
+BASEDIR=$(dirname "$0")
+
+source "$BASEDIR/../app/env/include"
+
+DEPLOY_TO_CONTAINER=0
+DEPLOY_TO_HOST=0
+
+while getopts 'ch' opt
+do
+  case $opt in
+    c) DEPLOY_TO_CONTAINER=1
+      ;;
+    h) DEPLOY_TO_HOST=1
+      ;;
+    *) echo "Try it again."
+       exit 1
+      ;;
+  esac
+done
+
+if [ -z "$MAGENTO_VERSION" ]; then
+    MAGENTO_VERSION="latest"
+fi
+
+bin/download -v $MAGENTO_VERSION -s
+
+REMOTE_MAGE_FILE="/var/magento/releases/$MAGENTO_VERSION.tar.gz"
+LOCAL_MAGE_FILE="$BASEDIR/../var/magento/releases/$MAGENTO_VERSION.tar.gz"
+
+if ! [ -f "$LOCAL_MAGE_FILE" ]; then
+    echo "File not found..."
+    exit 1
+fi
+
+echo "Deploying New Magento $MAGENTO_VERSION..."
+
+if [ "$DEPLOY_TO_CONTAINER" == 1 ]; then
+    echo "Deploying in container in dir: /var/www/html/magento2/"
+    bin/cli tar -zxf "$REMOTE_MAGE_FILE" -C "/var/www/html/magento2/" --strip 1
+fi
+
+if [ "$DEPLOY_TO_HOST" == 1 ]; then
+    echo "Deploying in host in dir: ./sites/magento2/"
+    tar -zxf "$LOCAL_MAGE_FILE" -C "./sites/magento2/" --strip 1
+fi
+
+bin/cli chown -R www-data: "/var/www/html/magento2/"

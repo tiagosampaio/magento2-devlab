@@ -34,7 +34,7 @@ print()
 
 check_dir()
 {
-    if ! [[ -d "$VAR_DIR" ]]; then
+    if ! [[ -d "$MAGE_RELEASES_DIR" ]]; then
         mkdir -p "$MAGE_RELEASES_DIR"
     fi
 }

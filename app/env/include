@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BASEDIR=$(dirname "$0")
+
+source "$BASEDIR/../app/env/db.env"
+source "$BASEDIR/../app/env/magento.env"
+
+if [[ -f ".env" ]]; then
+    source "$BASEDIR/../.env"
+fi

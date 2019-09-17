@@ -5,6 +5,9 @@ MAGE_DIR=/var/www/html/magento2
 echo "Starting containers..."
 bin/start
 
+#echo "Deploying New Magento..."
+bin/deploy-magento -c
+
 echo "Installing Magento..."
 bin/docker-compose exec php sh /var/scripts/magento-fresh-install.sh "$@"
 
