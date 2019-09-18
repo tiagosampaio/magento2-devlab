@@ -4,6 +4,7 @@ BASEDIR=$(dirname "$0")
 
 source "$BASEDIR/../app/env/include"
 
+STATE_FILE="$BASEDIR/../var/deploy/state"
 DEPLOY_TO_CONTAINER=0
 DEPLOY_TO_HOST=0
 
@@ -12,7 +13,12 @@ do
   case $opt in
     c) DEPLOY_TO_CONTAINER=1
       ;;
-    h) DEPLOY_TO_HOST=1
+    h)
+      if ! [ -f "$STATE_FILE" ]; then
+        DEPLOY_TO_HOST=1
+        touch "$STATE_FILE"
+        echo "deployed: host" >> "$STATE_FILE"
+      fi
       ;;
     *) echo "Try it again."
        exit 1
