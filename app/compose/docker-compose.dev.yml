@@ -5,14 +5,16 @@ version: "3.3"
 volumes:
   magento2:
   database:
+  magento2-sync:
+    external: true
 
 services:
 
   php:
     volumes:
-      - magento2:/var/www/html/magento2
-      - ../../sites/magento2:/root/magento2
-      - ../../var/magento/releases/:/var/magento/releases/
+      - magento2-sync:/var/www/html/magento2:nocopy
+#      - ../../sites/magento2:/root/magento2
+#      - ../../var/magento/releases/:/var/magento/releases/
 #      - ../../sites/magento2/app/code:/var/www/html/magento2/app/code
 #      - ../../sites/magento2/app/design:/var/www/html/magento2/app/design
 #      - ./sites/magento2/generated:/var/www/html/magento2/generated
@@ -27,7 +29,7 @@ services:
 
   nginx:
     volumes:
-      - magento2:/var/www/html/magento2
+      - magento2-sync:/var/www/html/magento2:nocopy
       - ../conf/nginx/conf.d/:/etc/nginx/conf.d/
       - ../conf/nginx/template/magento2.conf:/var/tmp/magento2.conf
       - ../../var/storage/logs/nginx:/var/log/nginx
