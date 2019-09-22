@@ -5,3 +5,4 @@ app/storage/*
 .env
 var/*
 !var/.gitignore
+*.sql*
