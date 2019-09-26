@@ -1,0 +1,12 @@
+#!/bin/bash
+OSTYPE=$(uname -s) | tr '[:upper:]' '[:lower:]'
+
+case $OSTYPE in
+    "solaris"*) echo "Solaris" ;;
+    "darwin"*)  echo "OSX" ;;
+    "linux"*)   echo "Linux" ;;
+    "freebsd"*) echo "FreeBSD" ;;
+    "bsd"*)     echo "BSD" ;;
+    "msys"*)    echo "WINDOWS" ;;
+    *)          echo "Unknown: $OSTYPE" ;;
+esac
