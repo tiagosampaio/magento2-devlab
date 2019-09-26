@@ -5,5 +5,5 @@ syncs:
     src: './sites/magento2'
 options:
   compose-file-path: './app/compose/docker-compose.yml'
-  compose-dev-file-path: './app/compose/docker-compose-dev.yml'
+  compose-dev-file-path: './app/compose/docker-compose.mac.yml'
   verbose: false
