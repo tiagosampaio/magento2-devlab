@@ -6,3 +6,4 @@ app/storage/*
 var/*
 !var/.gitignore
 *.sql*
+.docker-sync
