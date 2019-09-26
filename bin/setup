@@ -2,13 +2,17 @@
 
 MAGE_DIR=/var/www/html/magento2
 
-# bin/deploy-magento -h
+PLATFORM=$(app/bin/platform)
+
+if [ "$PLATFORM" == "OSX" ]; then
+    docker-sync-stack start
+fi
 
 echo "Starting containers..."
 bin/start
 
 #echo "Deploying New Magento..."
-bin/deploy-magento -c
+bin/deploy-magento -h
 
 echo "Installing Magento..."
 bin/docker-compose exec php magento-fresh-install "$@"
