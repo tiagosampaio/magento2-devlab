@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PLATFORM=$(app/bin/platform)
+
+# Synchronizing the files.
+if [ "$PLATFORM" == "OSX" ]; then
+    echo 1
+else
+    echo 0
+fi

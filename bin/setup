@@ -5,10 +5,8 @@ MAGE_DIR=/var/www/html/magento2
 #echo "Deploying New Magento..."
 bin/deploy-magento -h
 
-PLATFORM=$(app/bin/platform)
-
 # Synchronizing the files.
-if [ "$PLATFORM" == "OSX" ]; then
+if [ "$(bin/platform-osx)" == "1" ]; then
     docker-sync start
 fi
 
