@@ -39,6 +39,7 @@ script:
   - chmod +x app/bin/*
   - chmod +x app/env/include
   - touch .env
+  - mkdir -p ./sites/magento2/
   - bin/setup
   - bin/ps
   - bin/cli php -v
