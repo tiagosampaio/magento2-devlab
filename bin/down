@@ -1,2 +1,7 @@
 #!/bin/bash
 bin/docker-compose down "$@"
+
+# Synchronizing the files.
+if [ "$(bin/platform-osx)" == "1" ]; then
+    docker-sync stop
+fi
