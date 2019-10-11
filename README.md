@@ -1,6 +1,6 @@
-# Magento 2 DevStack
+# Magento 2 DevLab
 
-Magento 2 DevStack
+Magento 2 DevLab
 
 [![Build Status](https://travis-ci.org/tiagosampaio/magento2-devstack.svg?branch=master)](https://travis-ci.org/tiagosampaio/magento2-devstack)
 
@@ -11,25 +11,25 @@ Using this environment is really simple. Please follow the instructions below.
 Clone this repository in some directory on your machine using git:
 
 ```bash
-$ git clone git@github.com:tiagosampaio/magento2-devstack.git
+$ git clone git@github.com:tiagosampaio/magento2-devlab.git
 ```
 
 Or by downloading it directly:
 
 ```bash
-$ curl -L https://github.com/tiagosampaio/magento2-devstack/archive/master.zip -o [path to directory]
+$ curl -L https://github.com/tiagosampaio/magento2-devlab/archive/master.zip -o [path to directory]
 ```
 
-Let's say you downloaded the project to the directory `~/docker/magento2-devstack`. Move on to the directory where you just downloaded this repository:
+Let's say you downloaded the project to the directory `~/docker/magento2-devlab`. Move on to the directory where you just downloaded this repository:
 
 ```bash
-$ cd ~/docker/magento2-devstack
+$ cd ~/docker/magento2-devlab
 ```
 
 All of the helper scripts reside in the `bin` directory in the root directory of the project and they need to have execution permissions to be executed:
 
 ```bash
-$ chmod +x ~/docker/magento2-devstack/bin/*
+$ chmod +x ~/docker/magento2-devlab/bin/*
 ```
 
 In the project's root directory just run:
