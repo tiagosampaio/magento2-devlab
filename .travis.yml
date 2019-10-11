@@ -36,6 +36,8 @@ before_install:
   - sudo service mysql stop
 script:
   - chmod +x bin/*
+  - chmod +x app/bin/*
+  - chmod +x app/env/include
   - touch .env
   - bin/setup
   - bin/ps
