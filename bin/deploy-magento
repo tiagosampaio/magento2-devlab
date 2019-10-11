@@ -50,6 +50,11 @@ if ! [ -f "$LOCAL_MAGE_FILE" ]; then
     exit 1
 fi
 
+if [ ! -d "$DEPLOY_DIR" ]; then
+    echo "Creating directory $DEPLOY_DIR because it was not found."
+    mkdir -p "$DEPLOY_DIR"
+fi
+
 #echo "Deploying New Magento $MAGENTO_VERSION..."
 
 #if [ "$DEPLOY_TO_CONTAINER" == 1 ]; then
@@ -58,9 +63,9 @@ fi
 #fi
 
 if [ "$DEPLOY_TO_HOST" == 1 ]; then
-    echo "Deploying in host in dir: ./sites/magento2/"
-    tar -zxf "$LOCAL_MAGE_FILE" -C "./sites/magento2/" --strip 1
-    echo "Magento is deployed in dir: ./sites/magento2/"
+    echo "Deploying in host in dir: $DEPLOY_DIR"
+    tar -zxf "$LOCAL_MAGE_FILE" -C "$DEPLOY_DIR" --strip 1
+    echo "Magento is deployed in dir: $DEPLOY_DIR"
 fi
 
 #bin/cli chown -R www-data: "/var/www/html/magento2/"
